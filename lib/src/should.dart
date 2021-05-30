@@ -21,6 +21,25 @@ extension ShouldThrow<T> on Function {  // TODO: T extends Exception?
             actual.toString() == e.toString())));
   }
 
+  // Kotest:
+  // shouldThrow<T> { block } (T or subtype)
+
+  // Kotest:
+  // shouldThrowExactly<T> { block } (only T, no subtype)
+
+  // Kotest:
+  // shouldThrowAny { block }
+
+  // obj.shouldBeSameInstanceAs(other)
+
+  // obj.shouldBeTypeOf<T>()
+
+  // obj.shouldBeInstanceOf<T>
+
+  // obj.shouldHaveAnnotation(annotationClass) // TODO: probably not feasible
+
+  // obj.shouldBeNull()
+
   void shouldReturnNormally() {
     expect(this, returnsNormally);
   }
