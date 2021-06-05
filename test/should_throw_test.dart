@@ -16,13 +16,39 @@ int nonThrowingFunReturningTheAnswer() {
 class _CustomTestFailure {}
 
 void main() {
+  group('Should Throw Any', () {
+    test('Happy Path', () {
+      shouldThrowAny(() => throwingFun());
+    });
+
+    test('Unhappy Path', () {
+      try {
+        shouldThrowAny(() => nonThrowingFunReturningTheAnswer());
+        throw _CustomTestFailure();
+      } on TestFailure catch (_) {}
+    });
+  });
+
+  group('Should Throw <T>', () {
+    test('Happy Path', () {
+      shouldThrow<FormatException>(() => throwingFunWithParams('s', 1));
+    });
+
+    test('Unhappy Path', () {
+      try {
+        shouldThrow<FormatException>(() => nonThrowingFunReturningTheAnswer());
+        throw _CustomTestFailure();
+      } on TestFailure catch (_) {}
+    });
+  });
+
   group('Should Throw', () {
-    test('Throw', () {
+    test('Happy Path', () {
       (() => throwingFunWithParams('s', 1))
           .shouldThrow(FormatException('test'));
     });
 
-    test('Catch should Throw ex', () {
+    test('Unhappy Path', () {
       try {
         (() => nonThrowingFunReturningTheAnswer())
             .shouldThrow(FormatException('test'));
@@ -31,12 +57,12 @@ void main() {
     });
   });
 
-  group('Should Not Throw', () {
-    test('return normally', () {
+  group('Should return normally', () {
+    test('Happy Path', () {
       (() => nonThrowingFunReturningTheAnswer()).shouldReturnNormally();
     });
 
-    test('return normally bad case', () {
+    test('Unhappy Path', () {
       try {
         (() => throwingFun()).shouldReturnNormally();
         throw _CustomTestFailure();

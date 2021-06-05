@@ -3,5 +3,6 @@
 /// More dartdocs go here.
 library dartest;
 
-export 'src/dartest_base.dart';
 export 'src/should.dart';
+export 'src/should_bool.dart';
+export 'src/should_throw.dart';

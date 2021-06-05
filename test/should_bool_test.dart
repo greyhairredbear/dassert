@@ -24,8 +24,7 @@ void main() {
     });
 
     test('shouldBeFalse', () {
-      shouldThrow<TestFailure>(
-          () => falseValue.shouldBeTrue());
+      shouldThrow<TestFailure>(() => falseValue.shouldBeTrue());
     });
   });
 }
