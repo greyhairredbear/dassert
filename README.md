@@ -1,19 +1,3 @@
-A library for Dart developers.
+# Dartest
 
-## Usage
-
-A simple usage example:
-
-```dart
-import 'package:dartest/dartest.dart';
-
-main() {
-  var awesome = new Awesome();
-}
-```
-
-## Features and bugs
-
-Please file feature requests and bugs at the [issue tracker][tracker].
-
-[tracker]: http://example.com/issues/replaceme
+Draft for test-driven implementation of a dart assertion library inspired by [Kotest](https://kotest.io/docs/assertions/core-matchers.html). 
