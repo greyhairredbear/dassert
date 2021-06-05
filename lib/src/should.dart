@@ -8,39 +8,22 @@ extension Should<T> on T {
   void shouldNotBe(T other) {
     expect(this, isNot(equals(other)));
   }
-}
 
-// TODO evaluate further use cases: Matchers needed for exceptions?
-extension ShouldThrow<T> on Function {  // TODO: T extends Exception?
-  void shouldThrow(T e) {
-    expect(
-        this,
-        throwsA(predicate((actual) =>
-            actual is T &&
-            // TODO: toString as equality check :/
-            actual.toString() == e.toString())));
+  void shouldBeSameInstanceAs(T other) {
+    expect(this, same(other));
   }
 
-  // Kotest:
-  // shouldThrow<T> { block } (T or subtype)
+  void shouldBeTypeOf<M>() {
+    expect(this, isA<M>());
+  }
 
-  // Kotest:
-  // shouldThrowExactly<T> { block } (only T, no subtype)
+// obj.shouldHaveAnnotation(annotationClass) // TODO: possible with dart?
 
-  // Kotest:
-  // shouldThrowAny { block }
+  void shouldBeNull() {
+    expect(this, isNull);
+  }
 
-  // obj.shouldBeSameInstanceAs(other)
-
-  // obj.shouldBeTypeOf<T>()
-
-  // obj.shouldBeInstanceOf<T>
-
-  // obj.shouldHaveAnnotation(annotationClass) // TODO: probably not feasible
-
-  // obj.shouldBeNull()
-
-  void shouldReturnNormally() {
-    expect(this, returnsNormally);
+  void shouldNotBeNull() {
+    expect(this, isNotNull);
   }
 }
