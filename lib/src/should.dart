@@ -13,7 +13,8 @@ extension Should<T> on T {
     expect(this, same(other));
   }
 
-  void shouldBeTypeOf<M>() {
+  /// Asserts that the given reference is of type M or a subclass of M.
+  void shouldBeInstanceOf<M>() {
     expect(this, isA<M>());
   }
 

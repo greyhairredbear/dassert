@@ -1,16 +1,20 @@
 import 'package:dartest/dartest.dart';
 import 'package:test/test.dart';
 
-class TestClass {
+class _TestBase {}
+
+class _TestSub extends _TestBase {}
+
+class _TestClass {
   String name;
   int number;
 
-  TestClass({required this.name, required this.number});
+  _TestClass({required this.name, required this.number});
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is TestClass &&
+      other is _TestClass &&
           runtimeType == other.runtimeType &&
           name == other.name &&
           number == other.number;
@@ -19,9 +23,9 @@ class TestClass {
   int get hashCode => name.hashCode ^ number.hashCode;
 }
 
-final testClass1 = TestClass(name: 'test', number: 13);
-final testClass2 = TestClass(name: 'test2', number: 42);
-final testClass3 = TestClass(name: 'test2', number: 42);
+final testClass1 = _TestClass(name: 'test', number: 13);
+final testClass2 = _TestClass(name: 'test2', number: 42);
+final testClass3 = _TestClass(name: 'test2', number: 42);
 
 final String? optionalStringWithNullValue = null;
 final String? optionalStringWithNonNullValue = 'test';
@@ -66,25 +70,36 @@ void main() {
 
   group('shouldBeTypeOf', () {
     test('happy path string', () {
-      'hello'.shouldBeTypeOf<String>();
+      'hello'.shouldBeInstanceOf<String>();
     });
     test('happy path testclass', () {
-      testClass1.shouldBeTypeOf<TestClass>();
+      testClass1.shouldBeInstanceOf<_TestClass>();
     });
     test('happy path int', () {
-      0xdeadbeef.shouldBeTypeOf<int>();
+      0xdeadbeef.shouldBeInstanceOf<int>();
+    });
+    test('happy path class', () {
+      _TestBase().shouldBeInstanceOf<_TestBase>();
+    });
+    test('happy path subclass', () {
+      _TestSub().shouldBeInstanceOf<_TestBase>();
     });
     test('unhappy path int/String', () {
-      shouldThrow<TestFailure>(() => 123.shouldBeTypeOf<String>());
+      shouldThrow<TestFailure>(() => 123.shouldBeInstanceOf<String>());
     });
     test('unhappy path String/int', () {
-      shouldThrow<TestFailure>(() => '1234'.shouldBeTypeOf<int>());
+      shouldThrow<TestFailure>(() => '1234'.shouldBeInstanceOf<int>());
     });
     test('unhappy path class/String', () {
-      shouldThrow<TestFailure>(() => testClass1.shouldBeTypeOf<String>());
+      shouldThrow<TestFailure>(() => testClass1.shouldBeInstanceOf<String>());
     });
     test('unhappy path String/class', () {
-      shouldThrow<TestFailure>(() => 'testClass1'.shouldBeTypeOf<TestClass>());
+      shouldThrow<TestFailure>(
+          () => 'testClass1'.shouldBeInstanceOf<_TestClass>());
+    });
+    test('unhappy path base/sub class', () {
+      shouldThrow<TestFailure>(
+          () => _TestBase().shouldBeInstanceOf<_TestSub>());
     });
   });
 
