@@ -1,8 +1,8 @@
 /// Support for doing something awesome.
 /// TODO
 /// More dartdocs go here.
-library dartest;
+library dassert;
 
 export 'src/should.dart';
-export 'src/should_bool.dart';
-export 'src/should_throw.dart';
+export 'src/bool.dart';
+export 'src/throw.dart';

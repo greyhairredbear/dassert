@@ -1,4 +1,4 @@
-import 'package:dartest/src/should.dart';
+import 'package:dassert/src/should.dart';
 
 extension ShouldBool on bool {
   /// Convenience assertion that the expression is true.
