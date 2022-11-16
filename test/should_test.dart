@@ -14,10 +14,10 @@ class _TestClass {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-          other is _TestClass &&
-              runtimeType == other.runtimeType &&
-              name == other.name &&
-              number == other.number;
+      other is _TestClass &&
+          runtimeType == other.runtimeType &&
+          name == other.name &&
+          number == other.number;
 
   @override
   int get hashCode => name.hashCode ^ number.hashCode;
@@ -64,7 +64,7 @@ void main() {
     });
     test('unhappy path', () {
       shouldThrow<TestFailure>(
-              () => testClass1.shouldBeSameInstanceAs(testClass2));
+          () => testClass1.shouldBeSameInstanceAs(testClass2));
     });
   });
 
@@ -101,16 +101,14 @@ void main() {
     });
     test('unhappy path String/class', () {
       shouldThrow<TestFailure>(
-              () => 'testClass1'.shouldBeInstanceOf<_TestClass>());
+          () => 'testClass1'.shouldBeInstanceOf<_TestClass>());
     });
     test('unhappy path base/sub class', () {
       shouldThrow<TestFailure>(
           () => _TestBase().shouldBeInstanceOf<_TestSub>());
     });
     test('unhappy path nullability', () {
-      shouldThrow<TestFailure>(
-              () => null.shouldBeInstanceOf<_TestBase>()
-      );
+      shouldThrow<TestFailure>(() => null.shouldBeInstanceOf<_TestBase>());
     });
   });
 
@@ -123,7 +121,7 @@ void main() {
     });
     test('unhappy path', () {
       shouldThrow<TestFailure>(
-              () => optionalStringWithNonNullValue.shouldBeNull());
+          () => optionalStringWithNonNullValue.shouldBeNull());
     });
   });
 
@@ -136,7 +134,7 @@ void main() {
     });
     test('unhappy path', () {
       shouldThrow<TestFailure>(
-              () => optionalStringWithNullValue.shouldNotBeNull());
+          () => optionalStringWithNullValue.shouldNotBeNull());
     });
   });
 }
