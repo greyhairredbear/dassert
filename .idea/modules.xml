@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/dartest.iml" filepath="$PROJECT_DIR$/dartest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dassert.iml" filepath="$PROJECT_DIR$/dassert.iml" />
     </modules>
   </component>
 </project>
