@@ -1,10 +1,11 @@
 set -e
 
 echo "running pre-commit hooks"
+echo "..."
 
 dart pub get
 dart format --output=none --set-exit-if-changed .
 dart analyze --fatal-infos
 
-echo ""
+echo "..."
 echo "finished pre-commit hooks successfully"
