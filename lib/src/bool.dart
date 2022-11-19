@@ -1,5 +1,6 @@
 import 'package:dassert/src/should.dart';
 
+/// Convenience assertions on boolean values.
 extension ShouldBool on bool {
   /// Convenience assertion that the expression is true.
   /// Equivalent to `expr.shouldBe(true)`

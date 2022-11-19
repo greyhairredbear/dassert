@@ -27,8 +27,9 @@ final testClass1 = _TestClass(name: 'test', number: 13);
 final testClass2 = _TestClass(name: 'test2', number: 42);
 final testClass3 = _TestClass(name: 'test2', number: 42);
 
-final String? optionalStringWithNullValue = null;
+// ignore: unnecessary_nullable_for_final_variable_declarations
 final String? optionalStringWithNonNullValue = 'test';
+final String? optionalStringWithNullValue = null;
 
 void main() {
   group('shouldBe', () {
