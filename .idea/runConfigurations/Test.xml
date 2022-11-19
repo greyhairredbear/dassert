@@ -2,6 +2,8 @@
   <configuration default="false" name="Test" type="DartTestRunConfigurationType" factoryName="Dart Test">
     <option name="filePath" value="$PROJECT_DIR$/test" />
     <option name="scope" value="FOLDER" />
-    <method v="2" />
+    <method v="2">
+      <option name="RunConfigurationTask" enabled="true" run_configuration_name="Install Pre-Commit Hooks" run_configuration_type="ShConfigurationType" />
+    </method>
   </configuration>
 </component>
