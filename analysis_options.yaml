@@ -8,12 +8,17 @@ analyzer:
 
 linter:
  rules:
-   - always_use_package_imports: true
-   - always_declare_return_types: true
-   - avoid_print: true
-   - comment_references: true
-   - discarded_futures: true
-   - prefer_single_quotes: true
-   - sort_child_properties_last: true
-   - unawaited_futures: true
-   - unsafe_html: true
+   always_use_package_imports: true
+   always_declare_return_types: true
+   avoid_print: true
+   await_only_futures: true
+   comment_references: true
+   discarded_futures: true
+   #- dangling_library_doc_comments: true # Todo: use once stable
+   package_api_docs: true
+   prefer_single_quotes: true
+   public_member_api_docs: true
+   sort_child_properties_last: true
+   type_annotate_public_apis: true
+   unawaited_futures: true
+   unsafe_html: true

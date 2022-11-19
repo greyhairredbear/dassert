@@ -1,5 +1,7 @@
 import 'package:test/test.dart';
 
+/// Generic general purpose assertions for comparing objects for equality, type
+/// and potential null values.
 extension Should<T> on T {
   /// General purpose assertion that the given obj and other are both equal
   void shouldBe(T other) {
