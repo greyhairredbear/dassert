@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Install Pre-Commit Hooks" type="ShConfigurationType">
-    <option name="SCRIPT_TEXT" value="cp config/pre-commit .git/hooks/pre-commit" />
+    <option name="SCRIPT_TEXT" value="cp config/pre-commit .git/hooks/pre-commit &amp;&amp; chmod 755 .git/hooks/pre-commit" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="" />
     <option name="SCRIPT_OPTIONS" value="" />
