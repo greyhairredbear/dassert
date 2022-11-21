@@ -30,11 +30,34 @@ void main() {
     });
   });
 
-  /*
   group('should be empty', () {
-    test('', () {});
+    test('empty', () {
+      ''.shouldBeEmpty();
+    });
+    test('space', () {
+      shouldThrow<TestFailure>(() => ' '.shouldBeEmpty());
+    });
+    test('newline', () {
+      shouldThrow<TestFailure>(() => '\n'.shouldBeEmpty());
+    });
+    test('tab', () {
+      shouldThrow<TestFailure>(() => '\t'.shouldBeEmpty());
+    });
+    test('whitespace combination', () {
+      shouldThrow<TestFailure>(() => '   \t \t \n '.shouldBeEmpty());
+    });
+    test('letter', () {
+      shouldThrow<TestFailure>(() => ' t   '.shouldBeEmpty());
+    });
+    test('number', () {
+      shouldThrow<TestFailure>(() => '42 \n'.shouldBeEmpty());
+    });
+    test('special char', () {
+      shouldThrow<TestFailure>(() => '\t % \n '.shouldBeEmpty());
+    });
   });
 
+  /*
   group('should be lower case', () {
     test('', () {});
   });
