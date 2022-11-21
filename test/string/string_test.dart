@@ -1,10 +1,36 @@
+import 'package:dassert/dassert.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('should be blank', () {
-    test('', () {});
+    test('empty', () {
+      ''.shouldBeBlank();
+    });
+    test('space', () {
+      ' '.shouldBeBlank();
+    });
+    test('newline', () {
+      '\n'.shouldBeBlank();
+    });
+    test('tab', () {
+      '\t'.shouldBeBlank();
+    });
+    test('whitespace combination', () {
+      '   \t \t \n '.shouldBeBlank();
+    });
+
+    test('letter', () {
+      shouldThrow<TestFailure>(() => ' t   '.shouldBeBlank());
+    });
+    test('number', () {
+      shouldThrow<TestFailure>(() => '42 \n'.shouldBeBlank());
+    });
+    test('special char', () {
+      shouldThrow<TestFailure>(() => '\t % \n '.shouldBeBlank());
+    });
   });
 
+  /*
   group('should be empty', () {
     test('', () {});
   });
@@ -91,4 +117,5 @@ void main() {
   group('should be falsy', () {
     test('', () {});
   });
+   */
 }
