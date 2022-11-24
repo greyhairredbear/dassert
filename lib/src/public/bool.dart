@@ -1,4 +1,4 @@
-import 'package:dassert/src/should.dart';
+import 'package:dassert/src/public/should.dart';
 
 /// Convenience assertions on boolean values.
 extension ShouldBool on bool {

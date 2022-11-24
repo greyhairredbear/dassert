@@ -1,4 +1,5 @@
 import 'package:dassert/dassert.dart';
+import 'package:dassert/src/internal/should_fail.dart';
 import 'package:test/test.dart';
 
 class _TestBase {}
@@ -40,7 +41,7 @@ void main() {
       testClass3.shouldBe(testClass2);
     });
     test('unhappy path', () {
-      shouldThrow<TestFailure>(() => testClass1.shouldBe(testClass3));
+      shouldFail(() => testClass1.shouldBe(testClass3));
     });
   });
 
@@ -52,7 +53,7 @@ void main() {
       testClass2.shouldNotBe(testClass1);
     });
     test('unhappy path', () {
-      shouldThrow<TestFailure>(() => testClass1.shouldBe(testClass3));
+      shouldFail(() => testClass1.shouldBe(testClass3));
     });
   });
 
@@ -64,8 +65,7 @@ void main() {
       testClass2.shouldBeSameInstanceAs(testClass2);
     });
     test('unhappy path', () {
-      shouldThrow<TestFailure>(
-          () => testClass1.shouldBeSameInstanceAs(testClass2));
+      shouldFail(() => testClass1.shouldBeSameInstanceAs(testClass2));
     });
   });
 
@@ -92,24 +92,22 @@ void main() {
       _TestBase().shouldBeInstanceOf<_TestBase?>();
     });
     test('unhappy path int/String', () {
-      shouldThrow<TestFailure>(() => 123.shouldBeInstanceOf<String>());
+      shouldFail(() => 123.shouldBeInstanceOf<String>());
     });
     test('unhappy path String/int', () {
-      shouldThrow<TestFailure>(() => '1234'.shouldBeInstanceOf<int>());
+      shouldFail(() => '1234'.shouldBeInstanceOf<int>());
     });
     test('unhappy path class/String', () {
-      shouldThrow<TestFailure>(() => testClass1.shouldBeInstanceOf<String>());
+      shouldFail(() => testClass1.shouldBeInstanceOf<String>());
     });
     test('unhappy path String/class', () {
-      shouldThrow<TestFailure>(
-          () => 'testClass1'.shouldBeInstanceOf<_TestClass>());
+      shouldFail(() => 'testClass1'.shouldBeInstanceOf<_TestClass>());
     });
     test('unhappy path base/sub class', () {
-      shouldThrow<TestFailure>(
-          () => _TestBase().shouldBeInstanceOf<_TestSub>());
+      shouldFail(() => _TestBase().shouldBeInstanceOf<_TestSub>());
     });
     test('unhappy path nullability', () {
-      shouldThrow<TestFailure>(() => null.shouldBeInstanceOf<_TestBase>());
+      shouldFail(() => null.shouldBeInstanceOf<_TestBase>());
     });
   });
 
@@ -121,8 +119,7 @@ void main() {
       optionalStringWithNullValue.shouldBeNull();
     });
     test('unhappy path', () {
-      shouldThrow<TestFailure>(
-          () => optionalStringWithNonNullValue.shouldBeNull());
+      shouldFail(() => optionalStringWithNonNullValue.shouldBeNull());
     });
   });
 
@@ -134,8 +131,7 @@ void main() {
       optionalStringWithNonNullValue.shouldNotBeNull();
     });
     test('unhappy path', () {
-      shouldThrow<TestFailure>(
-          () => optionalStringWithNullValue.shouldNotBeNull());
+      shouldFail(() => optionalStringWithNullValue.shouldNotBeNull());
     });
   });
 }

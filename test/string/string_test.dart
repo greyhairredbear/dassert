@@ -1,4 +1,5 @@
 import 'package:dassert/dassert.dart';
+import 'package:dassert/src/internal/should_fail.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -20,13 +21,13 @@ void main() {
     });
 
     test('letter', () {
-      shouldThrow<TestFailure>(() => ' t   '.shouldBeBlank());
+      shouldFail(() => ' t   '.shouldBeBlank());
     });
     test('number', () {
-      shouldThrow<TestFailure>(() => '42 \n'.shouldBeBlank());
+      shouldFail(() => '42 \n'.shouldBeBlank());
     });
     test('special char', () {
-      shouldThrow<TestFailure>(() => '\t % \n '.shouldBeBlank());
+      shouldFail(() => '\t % \n '.shouldBeBlank());
     });
   });
 
@@ -35,25 +36,25 @@ void main() {
       ''.shouldBeEmpty();
     });
     test('space', () {
-      shouldThrow<TestFailure>(() => ' '.shouldBeEmpty());
+      shouldFail(() => ' '.shouldBeEmpty());
     });
     test('newline', () {
-      shouldThrow<TestFailure>(() => '\n'.shouldBeEmpty());
+      shouldFail(() => '\n'.shouldBeEmpty());
     });
     test('tab', () {
-      shouldThrow<TestFailure>(() => '\t'.shouldBeEmpty());
+      shouldFail(() => '\t'.shouldBeEmpty());
     });
     test('whitespace combination', () {
-      shouldThrow<TestFailure>(() => '   \t \t \n '.shouldBeEmpty());
+      shouldFail(() => '   \t \t \n '.shouldBeEmpty());
     });
     test('letter', () {
-      shouldThrow<TestFailure>(() => ' t   '.shouldBeEmpty());
+      shouldFail(() => ' t   '.shouldBeEmpty());
     });
     test('number', () {
-      shouldThrow<TestFailure>(() => '42 \n'.shouldBeEmpty());
+      shouldFail(() => '42 \n'.shouldBeEmpty());
     });
     test('special char', () {
-      shouldThrow<TestFailure>(() => '\t % \n '.shouldBeEmpty());
+      shouldFail(() => '\t % \n '.shouldBeEmpty());
     });
   });
 
