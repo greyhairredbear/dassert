@@ -3,7 +3,7 @@ import 'package:dassert/src/internal/should_fail.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('should be blank', () {
+  group('shouldBeBlank', () {
     test('empty', () {
       ''.shouldBeBlank();
     });
@@ -31,7 +31,7 @@ void main() {
     });
   });
 
-  group('should be empty', () {
+  group('shouldBeEmpty', () {
     test('empty', () {
       ''.shouldBeEmpty();
     });
@@ -58,15 +58,49 @@ void main() {
     });
   });
 
-  /*
   group('should be lower case', () {
-    test('', () {});
+    test('char', () {
+      'a'.shouldBeLowerCase();
+    });
+    test('whitespace', () {
+      '   '.shouldBeLowerCase();
+    });
+    test('numbers', () {
+      '54321'.shouldBeLowerCase();
+    });
+    test('lowercase characters and whitespace', () {
+      'test and \n test'.shouldBeLowerCase();
+    });
+    test('single uppercase char', () {
+      shouldFail(() => 'T'.shouldBeLowerCase());
+    });
+    test('uppercase characters with whitespace', () {
+      shouldFail(() => 'L33T SK1LLZ'.shouldBeLowerCase());
+    });
   });
 
   group('should be upper case', () {
-    test('', () {});
+    test('uppercase char', () {
+      'A'.shouldBeUpperCase();
+    });
+    test('whitespace', () {
+      '   '.shouldBeUpperCase();
+    });
+    test('numbers', () {
+      '54321'.shouldBeUpperCase();
+    });
+    test('lowercase characters and whitespace', () {
+      shouldFail(() => 'test and \n test'.shouldBeUpperCase());
+    });
+    test('single lowercase char', () {
+      shouldFail(() => 't'.shouldBeUpperCase());
+    });
+    test('uppercase characters with whitespace', () {
+      'L33T SK1LLZ'.shouldBeUpperCase();
+    });
   });
 
+  /*
   group('should contain substring', () {
     test('', () {});
   });

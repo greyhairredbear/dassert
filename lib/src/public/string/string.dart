@@ -11,4 +11,14 @@ extension StringMatcher on String {
   void shouldBeEmpty() {
     expect(this, isEmpty);
   }
+
+  /// Asserts that the string is all in lower case.
+  void shouldBeLowerCase() {
+    expect(this, toLowerCase());
+  }
+
+  /// Asserts that the string is all in upper case.
+  void shouldBeUpperCase() {
+    expect(this, toUpperCase());
+  }
 }
