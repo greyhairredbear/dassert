@@ -101,31 +101,7 @@ void main() {
   });
 
   /*
-  group('should contain substring', () {
-    test('', () {});
-  });
-
-  group('should contain regex', () {
-    test('', () {});
-  });
-
-  group('should contain a digit', () {
-    test('', () {});
-  });
-
-  group('should contain substring ignoring case', () {
-    test('', () {});
-  });
-
-  group('should contain only digits', () {
-    test('', () {});
-  });
-
   group('should be integer (and return) - todo: radix param?', () {
-    test('', () {});
-  });
-
-  group('should contain substring exactly once', () {
     test('', () {});
   });
 
