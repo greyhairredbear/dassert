@@ -1,7 +1,7 @@
 import 'package:test/expect.dart';
 
 /// Utils for asserting string contains certain values
-extension StringContainseMatcher on String {
+extension StringContainsMatcher on String {
   /// Asserts that the string includes the given [substring].
   /// The [substring] can be equal to the string.
   /// This matcher is case sensitive.
