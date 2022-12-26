@@ -7,8 +7,7 @@ extension StringContainsMatcher on String {
   /// This matcher is case sensitive.
   /// To make this case insensitive use [shouldContainIgnoringCase]
   void shouldContainSubstring(String substring) {
-    // TODO: assertion message might be improved (stringcontainsinorder msg seems pretty specific)
-    expect(this, stringContainsInOrder([substring]));
+    expect(this, contains(substring));
   }
 
   /// Asserts that the string contains the [substring] ignoring case.
