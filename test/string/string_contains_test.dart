@@ -45,16 +45,54 @@ void main() {
     });
   });
 
+  group('should contain substring ignoring case', () {
+    test('empty string should be contained in empty string', () {
+      ''.shouldContainIgnoringCase('');
+    });
+
+    test('empty string should be contained in arbitrary string', () {
+      'abcde54321'.shouldContainIgnoringCase('');
+    });
+
+    test('string should contain itself', () {
+      'deadBEEF'.shouldContainIgnoringCase('deadBEEF');
+    });
+
+    test('should contain prefix', () {
+      'testString'.shouldContainIgnoringCase('test');
+    });
+
+    test('should contain postfix', () {
+      'testString'.shouldContainIgnoringCase('String');
+    });
+
+    test('should contain middle', () {
+      'test'.shouldContainIgnoringCase('es');
+    });
+
+    test('should contain matching case', () {
+      'TeSt'.shouldContainIgnoringCase('eS');
+    });
+
+    test('should contain ignoring case', () {
+      'cAmEl'.shouldContainIgnoringCase('camel');
+    });
+
+    test('should fail if string is not contained', () {
+      shouldFail(() => '1234'.shouldContainIgnoringCase('substring'));
+    });
+
+    test('should fail if string is contained in reverse order', () {
+      shouldFail(() => 'dc'.shouldContainIgnoringCase('cd'));
+    });
+  });
+
   /*
   group('should contain regex', () {
     test('', () {});
   });
 
   group('should contain a digit', () {
-    test('', () {});
-  });
-
-  group('should contain substring ignoring case', () {
     test('', () {});
   });
 

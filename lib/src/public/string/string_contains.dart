@@ -12,6 +12,13 @@ extension StringContainsMatcher on String {
 
   /// Asserts that the string contains the [substring] ignoring case.
   void shouldContainIgnoringCase(String substring) {
-    throw UnimplementedError('todo');
+    expect(
+      this,
+      TypeMatcher<String>().having(
+        (p0) => p0.toLowerCase(),
+        'contains ignoring case',
+        contains(substring.toLowerCase()),
+      ),
+    );
   }
 }
