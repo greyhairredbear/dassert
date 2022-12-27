@@ -17,7 +17,7 @@ void main() {
     containedString: 'camel',
   );
 
-  final successSpecs = [
+  final stringContainsSuccessSpecs = [
     _TestSpec(
       name: 'empty string should be contained in empty string',
       input: '',
@@ -38,7 +38,7 @@ void main() {
     _TestSpec(name: 'should contain middle', input: 'test', containedString: 'es'),
     _TestSpec(name: 'should contain case sensitive', input: 'TeSt', containedString: 'eS'),
   ];
-  final failSpecs = [
+  final stringContainsFailSpecs = [
     _TestSpec(
       name: 'fail if string is not contained',
       input: '1234',
@@ -52,10 +52,10 @@ void main() {
   ];
 
   group('should contain substring', () {
-    for (final spec in successSpecs) {
+    for (final spec in stringContainsSuccessSpecs) {
       test(spec.name, () => spec.input.shouldContainSubstring(spec.containedString));
     }
-    for (final spec in failSpecs + [nonMatchingCaseSpec]) {
+    for (final spec in stringContainsFailSpecs + [nonMatchingCaseSpec]) {
       test(
         spec.name,
         () => shouldFail(() => spec.input.shouldContainSubstring(spec.containedString)),
@@ -64,10 +64,10 @@ void main() {
   });
 
   group('should contain substring ignoring case', () {
-    for (final spec in successSpecs + [nonMatchingCaseSpec]) {
+    for (final spec in stringContainsSuccessSpecs + [nonMatchingCaseSpec]) {
       test(spec.name, () => spec.input.shouldContainIgnoringCase(spec.containedString));
     }
-    for (final spec in failSpecs) {
+    for (final spec in stringContainsFailSpecs) {
       test(
         spec.name,
         () => shouldFail(() => spec.input.shouldContainIgnoringCase(spec.containedString)),
