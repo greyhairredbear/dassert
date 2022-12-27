@@ -76,7 +76,35 @@ void main() {
   });
 
   group('should contain substring exactly once', () {
-    test('', () {});
+    final successSpecs = [
+      _TestSpec(name: 'contained once at start', input: 'lorem ipsum', containedString: 'lore'),
+      _TestSpec(name: 'contained once at end', input: 'hello there!', containedString: 'here!'),
+      _TestSpec(name: 'contained once at middle', input: 'lorem ipsum', containedString: 'm i'),
+      _TestSpec(name: 'matches completely', input: 'matches!!11!', containedString: 'matches!!11!'),
+    ];
+    final failSpecs = [
+      _TestSpec(
+        name: 'fail when not contained',
+        input: 'input',
+        containedString: 'containedString',
+      ),
+      _TestSpec(
+        name: 'fail when contained multiple times',
+        input: 'first, second first',
+        containedString: 'first',
+      ),
+      _TestSpec(name: 'overlapping double match', input: 'HarHarHar', containedString: 'HarHar'),
+    ];
+
+    for (final spec in successSpecs) {
+      test(spec.name, () => spec.input.shouldContainExactlyOnce(spec.containedString));
+    }
+    for (final spec in failSpecs) {
+      test(
+        spec.name,
+        () => shouldFail(() => spec.input.shouldContainExactlyOnce(spec.containedString)),
+      );
+    }
   });
 
 /*

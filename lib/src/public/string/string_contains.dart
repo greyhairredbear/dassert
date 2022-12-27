@@ -17,4 +17,12 @@ extension StringContainsMatcher on String {
           contains(substring.toLowerCase()),
         ),
       );
+
+  // TODO: #13 dont use predicate here - uninformative error message
+  /// Asserts that the string contains the substring exactly once.
+  String shouldContainExactlyOnce(String substring) => should(predicate(
+        (String actual) =>
+            actual.contains(substring) &&
+            actual.indexOf(substring) == actual.lastIndexOf(substring),
+      ));
 }
