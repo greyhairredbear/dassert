@@ -1,3 +1,4 @@
+import 'package:dassert/dassert.dart';
 import 'package:test/test.dart';
 
 /// General purpose construct that asserts that the [block] throws
@@ -22,17 +23,15 @@ void shouldReturnNormally(Function block) {
 extension ShouldThrow<T> on Function {
   /// Asserts that an expected Exception [e] of type [T] is thrown
   /// when calling the extended function
-  void shouldThrow(T e) {
-    expect(
-        this,
-        throwsA(predicate((actual) =>
-            actual is T &&
-            // TODO: toString as equality check :/
-            actual.toString() == e.toString())));
-  }
+  Function shouldThrow(T e) => should(
+        throwsA(
+          predicate((actual) =>
+              actual is T &&
+              // TODO: toString as equality check :/
+              actual.toString() == e.toString()),
+        ),
+      );
 
   /// Asserts no exception in thrown when calling the extended function
-  void shouldReturnNormally() {
-    expect(this, returnsNormally);
-  }
+  void shouldReturnNormally() => should(returnsNormally);
 }

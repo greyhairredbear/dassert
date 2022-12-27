@@ -4,34 +4,26 @@ import 'package:test/test.dart';
 /// and potential null values.
 extension Should<T> on T {
   /// General purpose assertion that the given obj and other are both equal
-  void shouldBe(T other) {
-    expect(this, equals(other));
-  }
+  T shouldBe(T other) => should(equals(other));
 
   /// General purpose assertion that the given obj and other are not equal
-  void shouldNotBe(T other) {
-    expect(this, isNot(equals(other)));
-  }
+  T shouldNotBe(T other) => should(isNot(equals(other)));
 
   /// Compares objects by identity, that is, they are the same exact reference.
-  void shouldBeSameInstanceAs(T other) {
-    expect(this, same(other));
-  }
+  T shouldBeSameInstanceAs(T other) => should(same(other));
 
   /// Asserts that the given reference is of type M or a subclass of M.
-  void shouldBeInstanceOf<M>() {
-    expect(this, isA<M>());
-  }
-
-// obj.shouldHaveAnnotation(annotationClass) // TODO: possible with dart?
+  T shouldBeInstanceOf<M>() => should(isA<M>());
 
   /// Asserts that a given reference is null.
-  void shouldBeNull() {
-    expect(this, isNull);
-  }
+  T shouldBeNull() => should(isNull);
 
   /// Asserts that a given reference is not null.
-  void shouldNotBeNull() {
-    expect(this, isNotNull);
+  T shouldNotBeNull() => should(isNotNull);
+
+  /// Invokes a matcher and return the original value it was invoked upon.
+  T should(Matcher matcher) {
+    expect(this, matcher);
+    return this;
   }
 }

@@ -33,6 +33,18 @@ final String? optionalStringWithNonNullValue = 'test';
 final String? optionalStringWithNullValue = null;
 
 void main() {
+  group('should', () {
+    test('invoke matcher', () {
+      'example'.should(contains('exam'));
+      shouldFail(() => 'example'.should(contains('max')));
+    });
+
+    test('return original value on success', () {
+      final input = 'hello example';
+      input.should(isNotEmpty).shouldBe(input);
+    });
+  });
+
   group('shouldBe', () {
     test('happy path', () {
       testClass2.shouldBe(testClass3);

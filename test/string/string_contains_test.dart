@@ -88,9 +88,6 @@ void main() {
   });
 
   /*
-  group('should contain regex', () {
-    test('', () {});
-  });
 
   group('should contain a digit', () {
     test('', () {});
