@@ -2,102 +2,96 @@ import 'package:dassert/dassert.dart';
 import 'package:dassert/src/internal/should_fail.dart';
 import 'package:test/test.dart';
 
+class _TestSpec {
+  final String name;
+  final String input;
+
+  _TestSpec({required this.name, required this.input});
+}
+
 void main() {
   group('shouldBeBlank', () {
-    test('empty', () {
-      ''.shouldBeBlank();
-    });
-    test('space', () {
-      ' '.shouldBeBlank();
-    });
-    test('newline', () {
-      '\n'.shouldBeBlank();
-    });
-    test('tab', () {
-      '\t'.shouldBeBlank();
-    });
-    test('whitespace combination', () {
-      '   \t \t \n '.shouldBeBlank();
-    });
+    final successSpecs = [
+      _TestSpec(name: 'empty', input: ''),
+      _TestSpec(name: 'space', input: ' '),
+      _TestSpec(name: 'newline', input: '\n'),
+      _TestSpec(name: 'tab', input: '\t'),
+      _TestSpec(name: 'whitespace combination', input: '   \t \t \n '),
+    ];
+    final failSpecs = [
+      _TestSpec(name: 'letter', input: ' t   '),
+      _TestSpec(name: 'number', input: '42 \n'),
+      _TestSpec(name: 'special char', input: '\t % \n '),
+    ];
 
-    test('letter', () {
-      shouldFail(() => ' t   '.shouldBeBlank());
-    });
-    test('number', () {
-      shouldFail(() => '42 \n'.shouldBeBlank());
-    });
-    test('special char', () {
-      shouldFail(() => '\t % \n '.shouldBeBlank());
-    });
+    for (final spec in successSpecs) {
+      test(spec.name, () => spec.input.shouldBeBlank());
+    }
+    for (final spec in failSpecs) {
+      test(spec.name, () => shouldFail(() => spec.input.shouldBeBlank()));
+    }
   });
 
   group('shouldBeEmpty', () {
-    test('empty', () {
-      ''.shouldBeEmpty();
-    });
-    test('space', () {
-      shouldFail(() => ' '.shouldBeEmpty());
-    });
-    test('newline', () {
-      shouldFail(() => '\n'.shouldBeEmpty());
-    });
-    test('tab', () {
-      shouldFail(() => '\t'.shouldBeEmpty());
-    });
-    test('whitespace combination', () {
-      shouldFail(() => '   \t \t \n '.shouldBeEmpty());
-    });
-    test('letter', () {
-      shouldFail(() => ' t   '.shouldBeEmpty());
-    });
-    test('number', () {
-      shouldFail(() => '42 \n'.shouldBeEmpty());
-    });
-    test('special char', () {
-      shouldFail(() => '\t % \n '.shouldBeEmpty());
-    });
+    final successSpecs = [
+      _TestSpec(name: 'empty', input: ''),
+    ];
+    final failSpecs = [
+      _TestSpec(name: 'space', input: ' '),
+      _TestSpec(name: 'newline', input: '\n'),
+      _TestSpec(name: 'tab', input: '\t'),
+      _TestSpec(name: 'whitespace combination', input: '   \t \t \n '),
+      _TestSpec(name: 'letter', input: ' t   '),
+      _TestSpec(name: 'number', input: '42 \n'),
+      _TestSpec(name: 'special char', input: '\t % \n '),
+    ];
+
+    for (final spec in successSpecs) {
+      test(spec.name, () => spec.input.shouldBeEmpty());
+    }
+    for (final spec in failSpecs) {
+      test(spec.name, () => shouldFail(() => spec.input.shouldBeEmpty()));
+    }
   });
 
   group('should be lower case', () {
-    test('char', () {
-      'a'.shouldBeLowerCase();
-    });
-    test('whitespace', () {
-      '   '.shouldBeLowerCase();
-    });
-    test('numbers', () {
-      '54321'.shouldBeLowerCase();
-    });
-    test('lowercase characters and whitespace', () {
-      'test and \n test'.shouldBeLowerCase();
-    });
-    test('single uppercase char', () {
-      shouldFail(() => 'T'.shouldBeLowerCase());
-    });
-    test('uppercase characters with whitespace', () {
-      shouldFail(() => 'L33T SK1LLZ'.shouldBeLowerCase());
-    });
+    final successSpecs = [
+      _TestSpec(name: 'char', input: 'a'),
+      _TestSpec(name: 'whitespace', input: '    '),
+      _TestSpec(name: 'numbers', input: '54321'),
+      _TestSpec(name: 'lowercase characters and whitespace', input: 'test and \n test'),
+    ];
+    final failSpecs = [
+      _TestSpec(name: 'single uppercase char', input: 'T'),
+      _TestSpec(name: 'uppercase characters with whitespace', input: 'L33T SK1LLZ'),
+    ];
+
+    for (final spec in successSpecs) {
+      test(spec.name, () => spec.input.shouldBeLowerCase());
+    }
+    for (final spec in failSpecs) {
+      test(spec.name, () => shouldFail(() => spec.input.shouldBeLowerCase()));
+    }
   });
 
   group('should be upper case', () {
-    test('uppercase char', () {
-      'A'.shouldBeUpperCase();
-    });
-    test('whitespace', () {
-      '   '.shouldBeUpperCase();
-    });
-    test('numbers', () {
-      '54321'.shouldBeUpperCase();
-    });
-    test('lowercase characters and whitespace', () {
-      shouldFail(() => 'test and \n test'.shouldBeUpperCase());
-    });
-    test('single lowercase char', () {
-      shouldFail(() => 't'.shouldBeUpperCase());
-    });
-    test('uppercase characters with whitespace', () {
-      'L33T SK1LLZ'.shouldBeUpperCase();
-    });
+    final successSpecs = [
+      _TestSpec(name: 'uppercase char', input: 'A'),
+      _TestSpec(name: 'whitespace', input: '    '),
+      _TestSpec(name: 'numbers', input: '54321'),
+      _TestSpec(name: 'uppercase characters with whitespace', input: 'L33T SK1LLZ'),
+    ];
+    final failSpecs = [
+      _TestSpec(name: 'lowercase characters and whitespace', input: 'test and \n test'),
+      _TestSpec(name: 'single lowercase char', input: 't'),
+    ];
+
+    for (final spec in successSpecs) {
+      test(spec.name, () => spec.input.shouldBeUpperCase());
+    }
+    for (final spec in failSpecs) {
+      test(spec.name, () => shouldFail(() => spec.input.shouldBeUpperCase()));
+    }
   });
 
   /*

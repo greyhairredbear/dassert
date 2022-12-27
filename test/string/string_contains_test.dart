@@ -2,6 +2,15 @@ import 'package:dassert/dassert.dart';
 import 'package:dassert/src/internal/should_fail.dart';
 import 'package:test/test.dart';
 
+// TODO: #13 refactor to use testspec?
+// class _TestSpec {
+//   final String name;
+//   final String input;
+//   final String containedString;
+//
+//   _TestSpec({required this.name, required this.input, required this.containedString});
+// }
+
 void main() {
   group('should contain substring', () {
     test('empty string should be contained in empty string', () {
