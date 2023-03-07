@@ -21,7 +21,7 @@ extension Should<T> on T {
   /// Asserts that a given reference is not null.
   T shouldNotBeNull() => should(isNotNull);
 
-  /// Invokes a matcher and return the original value it was invoked upon.
+  /// Invokes a matcher and returns the original value it was invoked upon.
   T should(Matcher matcher) {
     expect(this, matcher);
     return this;

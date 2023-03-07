@@ -18,11 +18,9 @@ extension StringContainsMatcher on String {
         ),
       );
 
-  // TODO: #13 dont use predicate here - uninformative error message
-  /// Asserts that the string contains the substring exactly once.
+  /// Asserts that the string contains the [substring] exactly once.
   String shouldContainExactlyOnce(String substring) => should(predicate(
-        (String actual) =>
-            actual.contains(substring) &&
-            actual.indexOf(substring) == actual.lastIndexOf(substring),
-      ));
+      (String actual) =>
+          actual.contains(substring) && actual.indexOf(substring) == actual.lastIndexOf(substring),
+      'should contain \'$substring\' exactly once'));
 }
