@@ -1,39 +1,45 @@
-import 'package:dassert/src/internal/should_fail.dart';
 import 'package:dassert/src/public/string/string_matches_regex.dart';
-import 'package:test/test.dart';
 
-class _TestSpec {
-  final String name;
+import '../util/run_spec.dart'; // TODO: package import?
+
+class _TestSpec extends BaseTestSpec {
   final String input;
   final String pattern;
 
-  _TestSpec({required this.name, required this.input, required this.pattern});
+  _TestSpec({required String name, required this.input, required this.pattern}) : super(name);
 }
 
 void main() {
-  group('should contain regex', () {
-    final successSpecs = [
+  runSpecs(
+    'should contain regex',
+    successSpecs: [
       _TestSpec(name: 'empty regex should match empty string', input: '', pattern: ''),
       _TestSpec(name: 'empty regex should match arbitrary string', input: 'abcd4321', pattern: ''),
       _TestSpec(name: 'exact match should succeed', input: 'test', pattern: 'test'),
       _TestSpec(name: 'prefix match should succeed', input: 'test', pattern: 'te'),
       _TestSpec(name: 'postfix match should succeed', input: 'test', pattern: 'st'),
-    ];
-    final failSpecs = [
+    ],
+    failSpecs: [
       _TestSpec(name: 'character not in empty string', input: '', pattern: 'p'),
-    ];
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldContain(spec.pattern),
+  );
 
-    for (final spec in successSpecs) {
-      test(spec.name, () => spec.input.shouldContain(spec.pattern));
-    }
-    for (final spec in failSpecs) {
-      test(spec.name, () => shouldFail(() => spec.input.shouldContain(spec.pattern)));
-    }
-  });
-
-  // group('should match regex exactly', () {
-  //   test('', () {
-  //
-  //   });
-  // });
+  runSpecs(
+    'should match regex exactly',
+    successSpecs: [
+      _TestSpec(name: 'empty regex should match empty string', input: '', pattern: ''),
+      _TestSpec(name: 'exact match should succeed', input: 'test', pattern: 'test'),
+    ],
+    failSpecs: [
+      _TestSpec(
+          name: 'empty regex should not exactly match arbitrary string',
+          input: 'abcd4321',
+          pattern: ''),
+      _TestSpec(name: 'character not in empty string', input: '', pattern: 'p'),
+      _TestSpec(name: 'prefix match should fail', input: 'test', pattern: 'te'),
+      _TestSpec(name: 'postfix match should fail', input: 'test', pattern: 'st'),
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldMatch(spec.pattern),
+  );
 }

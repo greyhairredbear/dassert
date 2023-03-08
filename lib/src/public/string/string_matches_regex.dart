@@ -7,8 +7,8 @@ extension StringRegexMatcher on String {
   String shouldContain(Pattern regex) => should(matches(regex));
 
   /// Asserts that the string fully matches the given [regex].
-  String shouldMatch(Pattern regex) {
-    // TODO #13 firstMatch == this
-    throw UnimplementedError('todo');
-  }
+  String shouldMatch(Pattern regex) => should(predicate(
+        (String actual) => regex.matchAsPrefix(this)?.group(0) == this,
+        '\'$this\' should match pattern \'$regex\' exactly',
+      ));
 }

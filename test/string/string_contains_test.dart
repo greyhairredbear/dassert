@@ -2,12 +2,14 @@ import 'package:dassert/dassert.dart';
 import 'package:dassert/src/internal/should_fail.dart';
 import 'package:test/test.dart';
 
-class _TestSpec {
-  final String name;
+import '../util/run_spec.dart';
+
+class _TestSpec extends BaseTestSpec {
   final String input;
   final String containedString;
 
-  _TestSpec({required this.name, required this.input, required this.containedString});
+  _TestSpec({required String name, required this.input, required this.containedString})
+      : super(name);
 }
 
 void main() {
