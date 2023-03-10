@@ -1,43 +1,37 @@
 import 'package:dassert/dassert.dart';
-import 'package:dassert/src/internal/should_fail.dart';
-import 'package:test/test.dart';
 
-class _TestSpec {
-  final String name;
+import '../util/run_spec.dart';
+
+class _TestSpec extends BaseTestSpec {
   final String input;
 
-  _TestSpec({required this.name, required this.input});
+  _TestSpec({required String name, required this.input}) : super(name);
 }
 
-// TODO #13: use run spec here
 void main() {
-  group('shouldBeBlank', () {
-    final successSpecs = [
+  runSpecs(
+    'shouldBeBlank',
+    successSpecs: [
       _TestSpec(name: 'empty', input: ''),
       _TestSpec(name: 'space', input: ' '),
       _TestSpec(name: 'newline', input: '\n'),
       _TestSpec(name: 'tab', input: '\t'),
       _TestSpec(name: 'whitespace combination', input: '   \t \t \n '),
-    ];
-    final failSpecs = [
+    ],
+    failSpecs: [
       _TestSpec(name: 'letter', input: ' t   '),
       _TestSpec(name: 'number', input: '42 \n'),
       _TestSpec(name: 'special char', input: '\t % \n '),
-    ];
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldBeBlank(),
+  );
 
-    for (final spec in successSpecs) {
-      test(spec.name, () => spec.input.shouldBeBlank());
-    }
-    for (final spec in failSpecs) {
-      test(spec.name, () => shouldFail(() => spec.input.shouldBeBlank()));
-    }
-  });
-
-  group('shouldBeEmpty', () {
-    final successSpecs = [
+  runSpecs(
+    'shouldBeEmpty',
+    successSpecs: [
       _TestSpec(name: 'empty', input: ''),
-    ];
-    final failSpecs = [
+    ],
+    failSpecs: [
       _TestSpec(name: 'space', input: ' '),
       _TestSpec(name: 'newline', input: '\n'),
       _TestSpec(name: 'tab', input: '\t'),
@@ -45,57 +39,41 @@ void main() {
       _TestSpec(name: 'letter', input: ' t   '),
       _TestSpec(name: 'number', input: '42 \n'),
       _TestSpec(name: 'special char', input: '\t % \n '),
-    ];
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldBeEmpty(),
+  );
 
-    for (final spec in successSpecs) {
-      test(spec.name, () => spec.input.shouldBeEmpty());
-    }
-    for (final spec in failSpecs) {
-      test(spec.name, () => shouldFail(() => spec.input.shouldBeEmpty()));
-    }
-  });
-
-  group('should be lower case', () {
-    final successSpecs = [
+  runSpecs(
+    'should be lower case',
+    successSpecs: [
       _TestSpec(name: 'char', input: 'a'),
       _TestSpec(name: 'whitespace', input: '    '),
       _TestSpec(name: 'numbers', input: '54321'),
       _TestSpec(name: 'lowercase characters and whitespace', input: 'test and \n test'),
-    ];
-    final failSpecs = [
+    ],
+    failSpecs: [
       _TestSpec(name: 'single uppercase char', input: 'T'),
       _TestSpec(name: 'uppercase characters with whitespace', input: 'L33T SK1LLZ'),
-    ];
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldBeLowerCase(),
+  );
 
-    for (final spec in successSpecs) {
-      test(spec.name, () => spec.input.shouldBeLowerCase());
-    }
-    for (final spec in failSpecs) {
-      test(spec.name, () => shouldFail(() => spec.input.shouldBeLowerCase()));
-    }
-  });
-
-  group('should be upper case', () {
-    final successSpecs = [
+  runSpecs(
+    'should be upper case',
+    successSpecs: [
       _TestSpec(name: 'uppercase char', input: 'A'),
       _TestSpec(name: 'whitespace', input: '    '),
       _TestSpec(name: 'numbers', input: '54321'),
       _TestSpec(name: 'uppercase characters with whitespace', input: 'L33T SK1LLZ'),
-    ];
-    final failSpecs = [
+    ],
+    failSpecs: [
       _TestSpec(name: 'lowercase characters and whitespace', input: 'test and \n test'),
       _TestSpec(name: 'single lowercase char', input: 't'),
-    ];
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldBeUpperCase(),
+  );
 
-    for (final spec in successSpecs) {
-      test(spec.name, () => spec.input.shouldBeUpperCase());
-    }
-    for (final spec in failSpecs) {
-      test(spec.name, () => shouldFail(() => spec.input.shouldBeUpperCase()));
-    }
-  });
-
-  /*
+/*
   group('should be integer (and return) - todo: radix param?', () {
     test('', () {});
   });
