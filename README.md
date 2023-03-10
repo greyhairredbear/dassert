@@ -4,6 +4,8 @@
 [![CodeScene System Mastery](https://codescene.io/projects/16094/status-badges/system-mastery)](https://codescene.io/projects/16094)
 
 # Dassert
-
-Draft for test-driven implementation of a dart assertion library inspired
+Fluent dart assertion library inspired
 by [Kotest](https://kotest.io/docs/assertions/core-matchers.html). 
+
+## NOTE
+This project is a work in progress and subject to change. 
