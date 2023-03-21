@@ -20,4 +20,8 @@ extension StringMatcher on String {
 
   /// Asserts that the string is falsy. Falsy is one of the followings: ["false", "no", "n", "0"]
   String shouldBeFalsy() => should(predicate((s) => ['false', 'no', 'n', '0'].contains(s)));
+
+  /// Asserts that the string is equal to [other] ignoring case.
+  String shouldBeEqualIgnoringCase(String other) =>
+      should(predicate((String s) => s.toLowerCase() == other.toLowerCase()));
 }
