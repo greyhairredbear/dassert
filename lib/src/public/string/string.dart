@@ -14,4 +14,10 @@ extension StringMatcher on String {
 
   /// Asserts that the string is all in upper case.
   String shouldBeUpperCase() => shouldBe(toUpperCase());
+
+  /// Asserts that the string is truthy. Truthy is one of the followings: ["true", "yes", "y", "1"]
+  String shouldBeTruthy() => should(predicate((s) => ['true', 'yes', 'y', '1'].contains(s)));
+
+  /// Asserts that the string is falsy. Falsy is one of the followings: ["false", "no", "n", "0"]
+  String shouldBeFalsy() => should(predicate((s) => ['false', 'no', 'n', '0'].contains(s)));
 }
