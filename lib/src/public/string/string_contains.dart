@@ -29,11 +29,11 @@ extension StringContainsMatcher on String {
 
   /// Asserts that the string contains at least one digit.
   String shouldContainADigit() =>
-      should(predicate((String input) => Characters(input).any((char) => char.isDigit())));
+      should(predicate((String input) => input.characters.any((char) => char.isDigit())));
 
   /// Asserts that the string contains only digits, or is empty.
   String shouldContainOnlyDigits() =>
-      should(predicate((String input) => Characters(input).every((char) => char.isDigit())));
+      should(predicate((String input) => input.characters.every((char) => char.isDigit())));
 }
 
 extension _IsDigit on String {
