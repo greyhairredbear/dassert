@@ -1,3 +1,6 @@
+import 'dart:core';
+
+import 'package:characters/characters.dart';
 import 'package:dassert/dassert.dart';
 import 'package:test/expect.dart';
 
@@ -23,4 +26,16 @@ extension StringContainsMatcher on String {
       (String actual) =>
           actual.contains(substring) && actual.indexOf(substring) == actual.lastIndexOf(substring),
       'should contain \'$substring\' exactly once'));
+
+  /// Asserts that the string contains at least one digit.
+  String shouldContainADigit() =>
+      should(predicate((String input) => Characters(input).any((char) => char.isDigit())));
+
+  /// Asserts that the string contains only digits, or is empty.
+  String shouldContainOnlyDigits() =>
+      should(predicate((String input) => Characters(input).every((char) => char.isDigit())));
+}
+
+extension _IsDigit on String {
+  bool isDigit() => ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].contains(this);
 }

@@ -88,16 +88,4 @@ void main() {
     ],
     testFunction: (_TestSpec spec) => spec.input.shouldContainExactlyOnce(spec.containedString),
   );
-
-/*
-
-  group('should contain a digit', () {
-    test('', () {});
-  });
-
-  group('should contain only digits', () {
-    test('', () {});
-  });
-
-   */
 }
