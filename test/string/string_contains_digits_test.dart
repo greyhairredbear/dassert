@@ -1,6 +1,7 @@
 import 'package:dassert/dassert.dart';
 
 import '../util/run_spec.dart';
+import 'string_test_constants.dart';
 
 class _TestSpec extends BaseTestSpec {
   final String input;
@@ -19,7 +20,7 @@ void main() {
     ],
     failSpecs: [
       _TestSpec(name: 'no digit', input: 'hell no'),
-      _TestSpec(name: 'empty string', input: ''),
+      _TestSpec(name: 'empty string', input: emptyString),
     ],
     testFunction: (_TestSpec spec) => spec.input.shouldContainADigit(),
   );
@@ -28,7 +29,7 @@ void main() {
     'should contain only digits',
     successSpecs: [
       _TestSpec(name: 'only digits', input: '09876'),
-      _TestSpec(name: 'empty string', input: ''),
+      _TestSpec(name: 'empty string', input: emptyString),
     ],
     failSpecs: [
       _TestSpec(name: 'at start', input: '120input'),

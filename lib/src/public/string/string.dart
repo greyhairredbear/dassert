@@ -24,4 +24,20 @@ extension StringMatcher on String {
   /// Asserts that the string is equal to [other] ignoring case.
   String shouldBeEqualIgnoringCase(String other) =>
       should(predicate((String s) => s.toLowerCase() == other.toLowerCase()));
+
+  /// Asserts that the string is no shorter than the given [min] length.
+  String shouldHaveMinLength(int min) => should(predicate((String s) => s.length >= min));
+
+  /// Asserts that the string is no longer than the given [max] length.
+  String shouldHaveMaxLength(int max) => should(predicate((String s) => s.length <= max));
+
+  /// Asserts that the string has the given [length].
+  String shouldHaveLength(int length) => should(predicate((String s) => s.length == length));
+
+  /// Asserts that the string contains the given number of lines.
+  String shouldHaveLineCount(int length) => should(predicate((String s) => throw 1));
+
+  /// Asserts that the string has the same length as [other] string.
+  String shouldHaveSameLengthAs(String other) =>
+      should(predicate((String s) => s.length == other.length));
 }

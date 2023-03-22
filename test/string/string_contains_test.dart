@@ -1,6 +1,7 @@
 import 'package:dassert/dassert.dart';
 
 import '../util/run_spec.dart';
+import 'string_test_constants.dart';
 
 class _TestSpec extends BaseTestSpec {
   final String input;
@@ -20,13 +21,13 @@ void main() {
   final stringContainsSuccessSpecs = [
     _TestSpec(
       name: 'empty string should be contained in empty string',
-      input: '',
-      containedString: '',
+      input: emptyString,
+      containedString: emptyString,
     ),
     _TestSpec(
       name: 'empty string should be contained in arbitrary string',
       input: 'abcde123',
-      containedString: '',
+      containedString: emptyString,
     ),
     _TestSpec(
       name: 'string should contain itself',

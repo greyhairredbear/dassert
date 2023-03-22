@@ -1,6 +1,7 @@
 import 'package:dassert/dassert.dart';
 
 import '../util/run_spec.dart';
+import 'string_test_constants.dart';
 
 class _TestSpec extends BaseTestSpec {
   final String input;
@@ -8,7 +9,7 @@ class _TestSpec extends BaseTestSpec {
   const _TestSpec({required String name, required this.input}) : super(name);
 }
 
-const _empty = _TestSpec(name: 'empty', input: '');
+const _empty = _TestSpec(name: 'empty', input: emptyString);
 const _space = _TestSpec(name: 'space', input: ' ');
 const _newline = _TestSpec(name: 'newline', input: '\n');
 const _tab = _TestSpec(name: 'tab', input: '\t');
@@ -102,37 +103,11 @@ void main() {
     test('', () {});
   });
 
+  // TODO group contains/starts/ends etc?
   group('should end with suffix', () {
     test('', () {});
   });
 
-  group('should have length', () {
-    test('', () {});
-  });
-
-  group('should have line count', () {
-    test('', () {});
-  });
-
-  // TODO group length related stuff into separate file
-  group('should have max length', () {
-    test('', () {});
-  });
-
-  group('should have min length', () {
-    test('', () {});
-  });
-
-  group('should have same length as other string', () {
-    test('', () {});
-  });
-
-  // TODO group regex stuff into separate file
-  group('should match regex', () {
-    test('', () {});
-  });
-
-  // TODO group contains/starts/ends etc?
   group('should start with prefix', () {
     test('', () {});
   });
