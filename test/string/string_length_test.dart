@@ -45,10 +45,31 @@ void main() {
     );
   });
 
-  // group('should have line count', () {
-  //   test('', () {});
-  // });
-  //
+  group('glados: shouldHaveLineCount', () {
+    Glados(any.positiveInt).test(
+      'a string concatenated with an empty string should retain its line count',
+      (input) => (emptyString + '\n12' * input + emptyString).shouldHaveLineCount(1 + input),
+    );
+    Glados2(any.positiveInt, any.positiveInt).test(
+      'two concatenated strings should have the sum of their lines',
+      (n1, n2) => (('ab\n' * n1) + ('\ncd\n' * n2)).shouldHaveLineCount(1 + n1 + 2 * n2),
+    );
+  });
+  runSpecs(
+    'shouldHaveLineCount',
+    successSpecs: [
+      _TestSpec(name: 'empty string', input: emptyString, length: 1),
+      _TestSpec(name: 'one line string', input: 'one line \n', length: 2),
+      _TestSpec(name: '4 line string', input: '1\n2\n3\n', length: 4),
+    ],
+    failSpecs: [
+      _TestSpec(name: 'empty string', input: emptyString, length: 0),
+      _TestSpec(name: 'one line string', input: 'one line \n', length: 3),
+      _TestSpec(name: '4 line string', input: '1\n2\n3\n', length: 3),
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldHaveLineCount(spec.length),
+  );
+
   runSpecs(
     'shouldHaveMinLength',
     successSpecs: [

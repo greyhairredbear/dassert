@@ -1,3 +1,4 @@
+import 'package:characters/characters.dart';
 import 'package:dassert/dassert.dart';
 import 'package:test/test.dart';
 
@@ -35,7 +36,9 @@ extension StringMatcher on String {
   String shouldHaveLength(int length) => should(predicate((String s) => s.length == length));
 
   /// Asserts that the string contains the given number of lines.
-  String shouldHaveLineCount(int length) => should(predicate((String s) => throw 1));
+  String shouldHaveLineCount(int count) =>
+      // TODO: replace predicate with dartx count once implemented and merged?
+      should(predicate((String s) => s.characters.where((c) => c == '\n').length + 1 == count));
 
   /// Asserts that the string has the same length as [other] string.
   String shouldHaveSameLengthAs(String other) =>
