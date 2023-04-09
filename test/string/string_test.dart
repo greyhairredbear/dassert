@@ -102,14 +102,5 @@ void main() {
   group('should be integer (and return) - todo: radix param?', () {
     test('', () {});
   });
-
-  // TODO group contains/starts/ends etc?
-  group('should end with suffix', () {
-    test('', () {});
-  });
-
-  group('should start with prefix', () {
-    test('', () {});
-  });
    */
 }

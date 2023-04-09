@@ -1,4 +1,6 @@
 import 'package:dassert/dassert.dart';
+import 'package:dassert/src/internal/should_fail.dart';
+import 'package:glados/glados.dart';
 
 import '../util/run_spec.dart';
 import 'string_test_constants.dart';
@@ -89,4 +91,70 @@ void main() {
     ],
     testFunction: (_TestSpec spec) => spec.input.shouldContainExactlyOnce(spec.containedString),
   );
+
+  runSpecs(
+    'should start with prefix',
+    successSpecs: [
+      _TestSpec(name: 'first letter', input: 'test', containedString: 't'),
+      _TestSpec(name: 'first four letters', input: 'hello', containedString: 'hell'),
+    ],
+    failSpecs: [
+      _TestSpec(name: 'not contained string', input: 'aabbcc', containedString: 'dd'),
+      _TestSpec(name: 'suffix', input: 'aabbcc', containedString: 'cc'),
+      _TestSpec(name: 'contained', input: 'aabbcc', containedString: 'bb'),
+      _TestSpec(name: 'match with wrong case', input: 'HeLlO', containedString: 'hell'),
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldStartWith(spec.containedString),
+  );
+
+  group('glados: should start with prefix', () {
+    Glados(any.letterOrDigits).test(
+      'empty string should prefix all strings',
+      (input) => input.shouldStartWith(emptyString),
+    );
+    Glados(any.letterOrDigits).test(
+      'string should always be prefix of itself',
+      (input) => input.shouldStartWith(input),
+    );
+    Glados2(
+      any.listWithLengthInRange(0, 1000, randomChar),
+      any.listWithLengthInRange(1000, 2000, randomChar),
+    ).test(
+      'longer string can never prefix shorter string',
+      (shorter, longer) => shouldFail(() => shorter.join().shouldStartWith(longer.join())),
+    );
+  });
+
+  runSpecs(
+    'should end with suffix',
+    successSpecs: [
+      _TestSpec(name: 'last letter', input: 'last', containedString: 't'),
+      _TestSpec(name: 'last four letters', input: 'forty', containedString: 'orty'),
+    ],
+    failSpecs: [
+      _TestSpec(name: 'not contained string', input: 'aabbcc', containedString: 'dd'),
+      _TestSpec(name: 'prefix', input: 'aabbcc', containedString: 'aa'),
+      _TestSpec(name: 'contained', input: 'aabbcc', containedString: 'bb'),
+      _TestSpec(name: 'match with wrong case', input: 'HeLlO', containedString: 'Lo'),
+    ],
+    testFunction: (_TestSpec spec) => spec.input.shouldEndWith(spec.containedString),
+  );
+
+  group('glados: should end with suffix', () {
+    Glados(any.letterOrDigits).test(
+      'empty string should suffix all strings',
+      (input) => input.shouldEndWith(emptyString),
+    );
+    Glados(any.letterOrDigits).test(
+      'string should always be suffix of itself',
+      (input) => input.shouldEndWith(input),
+    );
+    Glados2(
+      any.listWithLengthInRange(0, 1000, randomChar),
+      any.listWithLengthInRange(1000, 2000, randomChar),
+    ).test(
+      'longer string can never suffix shorter string',
+      (shorter, longer) => shouldFail(() => shorter.join().shouldEndWith(longer.join())),
+    );
+  });
 }

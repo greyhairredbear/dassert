@@ -23,8 +23,7 @@ extension StringContainsMatcher on String {
 
   /// Asserts that the string contains the [substring] exactly once.
   String shouldContainExactlyOnce(String substring) => should(predicate(
-      (String actual) =>
-          actual.contains(substring) && actual.indexOf(substring) == actual.lastIndexOf(substring),
+      (String s) => s.contains(substring) && s.indexOf(substring) == s.lastIndexOf(substring),
       'should contain \'$substring\' exactly once'));
 
   /// Asserts that the string contains at least one digit.
@@ -34,6 +33,14 @@ extension StringContainsMatcher on String {
   /// Asserts that the string contains only digits, or is empty.
   String shouldContainOnlyDigits() =>
       should(predicate((String input) => input.characters.every((char) => char.isDigit())));
+
+  /// Asserts that the string starts with the given [prefix].
+  /// The [prefix] can be equal to the string. This matcher is case sensitive.
+  String shouldStartWith(String prefix) => should(predicate((String s) => s.startsWith(prefix)));
+
+  /// Asserts that the string ends with the given [suffix].
+  /// The [suffix] can be equal to the string. This matcher is case sensitive.
+  String shouldEndWith(String suffix) => should(predicate((String s) => s.endsWith(suffix)));
 }
 
 extension _IsDigit on String {
