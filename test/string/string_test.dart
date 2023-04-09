@@ -111,9 +111,5 @@ void main() {
   group('should start with prefix', () {
     test('', () {});
   });
-
-  group('should be equal ignoring case', () {
-    test('', () {});
-  });
    */
 }
