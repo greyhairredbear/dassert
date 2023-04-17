@@ -1,4 +1,5 @@
 import 'package:characters/characters.dart';
+import 'package:dartx/dartx.dart';
 import 'package:dassert/dassert.dart';
 import 'package:test/test.dart';
 
@@ -43,4 +44,21 @@ extension StringMatcher on String {
   /// Asserts that the string has the same length as [other] string.
   String shouldHaveSameLengthAs(String other) =>
       should(predicate((String s) => s.length == other.length));
+
+  /// Asserts that the string contains an integer and returns it.
+  ///
+  /// The [radix] must be in the range 2..36. The digits used are
+  /// first the decimal digits 0..9, and then the letters 'a'..'z' with
+  /// values 10 through 35. Also accepts upper-case letters with the same
+  /// values as the lower-case ones.
+  ///
+  /// If no [radix] is given then it defaults to 10.
+  int shouldBeInteger({int radix = 10}) {
+    final result = int.tryParse(this, radix: radix);
+    if (result == null) {
+      fail('"$this" is not an int with radix $radix!');
+    }
+
+    return result;
+  }
 }

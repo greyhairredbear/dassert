@@ -97,10 +97,4 @@ void main() {
     failSpecs: _truthySpecs,
     testFunction: (_TestSpec spec) => spec.input.shouldBeFalsy(),
   );
-
-/*
-  group('should be integer (and return) - todo: radix param?', () {
-    test('', () {});
-  });
-   */
 }
