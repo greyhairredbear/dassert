@@ -1,5 +1,6 @@
 [![Analyze and test](https://github.com/greyhairredbear/dassert/actions/workflows/analyze-and-test.yml/badge.svg)](https://github.com/greyhairredbear/dassert/actions/workflows/analyze-and-test.yml)
 [![Coverage Status](https://coveralls.io/repos/github/greyhairredbear/dassert/badge.svg)](https://coveralls.io/github/greyhairredbear/dassert)
+[![codecov](https://codecov.io/github/greyhairredbear/dassert/branch/develop/graph/badge.svg?token=2K8XJOR4F1)](https://codecov.io/github/greyhairredbear/dassert)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CodeScene Code Health](https://codescene.io/projects/16094/status-badges/code-health)](https://codescene.io/projects/16094)
 [![CodeScene System Mastery](https://codescene.io/projects/16094/status-badges/system-mastery)](https://codescene.io/projects/16094)
