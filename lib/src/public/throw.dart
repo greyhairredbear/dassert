@@ -18,7 +18,6 @@ void shouldReturnNormally(Function block) {
   expect(block, returnsNormally);
 }
 
-// TODO: remove this extension altogether in favor of global functions above?
 /// Extensions on function types to assert function behavior regarding throwing exceptions
 extension ShouldThrow<T> on Function {
   /// Asserts that an expected Exception [e] of type [T] is thrown
