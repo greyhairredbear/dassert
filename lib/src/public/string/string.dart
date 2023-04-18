@@ -1,5 +1,4 @@
 import 'package:characters/characters.dart';
-import 'package:dartx/dartx.dart';
 import 'package:dassert/dassert.dart';
 import 'package:test/test.dart';
 
