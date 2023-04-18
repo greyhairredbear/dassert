@@ -60,9 +60,20 @@ void main() {
       (() => nonThrowingFunReturningTheAnswer()).shouldReturnNormally();
     });
 
+    test('Happy Path', () {
+      shouldReturnNormally(() => nonThrowingFunReturningTheAnswer());
+    });
+
     test('Unhappy Path', () {
       try {
         (() => throwingFun()).shouldReturnNormally();
+        throw _CustomTestFailure();
+      } on TestFailure catch (_) {}
+    });
+
+    test('Unhappy Path', () {
+      try {
+        shouldReturnNormally(() => throwingFun());
         throw _CustomTestFailure();
       } on TestFailure catch (_) {}
     });
