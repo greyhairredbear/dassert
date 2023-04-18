@@ -44,14 +44,12 @@ void main() {
 
   group('Should Throw', () {
     test('Happy Path', () {
-      (() => throwingFunWithParams('s', 1))
-          .shouldThrow(FormatException('test'));
+      (() => throwingFunWithParams('s', 1)).shouldThrow(FormatException('test'));
     });
 
     test('Unhappy Path', () {
       try {
-        (() => nonThrowingFunReturningTheAnswer())
-            .shouldThrow(FormatException('test'));
+        (() => nonThrowingFunReturningTheAnswer()).shouldThrow(FormatException('test'));
         throw _CustomTestFailure();
       } on TestFailure catch (_) {}
     });
@@ -62,9 +60,20 @@ void main() {
       (() => nonThrowingFunReturningTheAnswer()).shouldReturnNormally();
     });
 
+    test('Happy Path', () {
+      shouldReturnNormally(() => nonThrowingFunReturningTheAnswer());
+    });
+
     test('Unhappy Path', () {
       try {
         (() => throwingFun()).shouldReturnNormally();
+        throw _CustomTestFailure();
+      } on TestFailure catch (_) {}
+    });
+
+    test('Unhappy Path', () {
+      try {
+        shouldReturnNormally(() => throwingFun());
         throw _CustomTestFailure();
       } on TestFailure catch (_) {}
     });

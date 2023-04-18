@@ -1,4 +1,5 @@
 import 'package:dassert/dassert.dart';
+import 'package:dassert/src/internal/should_fail.dart';
 import 'package:test/test.dart';
 
 bool functionReturningTrueValue() => true;
@@ -8,8 +9,7 @@ bool falseValue = false;
 void main() {
   group('Happy Path', () {
     test('shouldBeTrue', () {
-      (() => functionReturningTrueValue().shouldBeTrue())
-          .shouldReturnNormally();
+      (() => functionReturningTrueValue().shouldBeTrue()).shouldReturnNormally();
     });
 
     test('shouldBeFalse', () {
@@ -19,12 +19,11 @@ void main() {
 
   group('Unhappy Path', () {
     test('shouldBeTrue', () {
-      shouldThrow<TestFailure>(
-          () => functionReturningTrueValue().shouldBeFalse());
+      shouldFail(() => functionReturningTrueValue().shouldBeFalse());
     });
 
     test('shouldBeFalse', () {
-      shouldThrow<TestFailure>(() => falseValue.shouldBeTrue());
+      shouldFail(() => falseValue.shouldBeTrue());
     });
   });
 }

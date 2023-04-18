@@ -2,6 +2,9 @@
 /// [Kotest](https://kotest.io/docs/assertions/core-matchers.html).
 library dassert;
 
-export 'src/bool.dart';
-export 'src/should.dart';
-export 'src/throw.dart';
+export 'src/public/bool.dart';
+export 'src/public/should.dart';
+export 'src/public/string/string.dart';
+export 'src/public/string/string_contains.dart';
+export 'src/public/string/string_matches_regex.dart';
+export 'src/public/throw.dart';

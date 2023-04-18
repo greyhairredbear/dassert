@@ -4,7 +4,7 @@ echo "running pre-commit hooks"
 echo "..."
 
 dart pub get
-dart format --output=none --set-exit-if-changed .
+dart format --output=none --line-length=100 --set-exit-if-changed .
 dart analyze --fatal-infos
 
 echo "..."
