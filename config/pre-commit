@@ -3,9 +3,7 @@ set -e
 echo "running pre-commit hooks"
 echo "..."
 
-dart pub get
-dart format --output=none --line-length=100 --set-exit-if-changed .
-dart analyze --fatal-infos
+make check
 
 echo "..."
 echo "finished pre-commit hooks successfully"
