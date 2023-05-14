@@ -63,7 +63,6 @@ doc/api/
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
 # *.ipr
 
 # CMake
@@ -110,3 +109,4 @@ fabric.properties
 .idea/*
 !.idea/runConfigurations
 !.idea/runConfigurations/*
+*.iml
