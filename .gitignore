@@ -63,7 +63,6 @@ doc/api/
 # .idea/modules.xml
 # .idea/*.iml
 # .idea/modules
-# *.iml
 # *.ipr
 
 # CMake
@@ -102,3 +101,12 @@ fabric.properties
 
 .idea/aws.xml
 .idea/jpa-buddy.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+
+!.idea
+.idea/*
+!.idea/runConfigurations
+!.idea/runConfigurations/*
+*.iml
