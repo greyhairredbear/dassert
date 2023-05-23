@@ -1,30 +1,11 @@
-// class _TestSpec extends BaseTestSpec {
-//   final num input;
-//   final num lowerBound;
-//   final num upperBound;
-//
-//   _TestSpec({
-//     required String name,
-//     required this.input,
-//     required this.lowerBound,
-//     required this.upperBound,
-//   }) : super(name);
-// }
+import 'dart:math';
+
+import 'package:dassert/src/internal/should_fail.dart';
+import 'package:dassert/src/public/number/number.dart';
+import 'package:glados/glados.dart';
 
 final int64MaxValue = double.maxFinite.toInt();
 const minDif = 0.0000001;
-
-/// Asserts that the long is less than the given value n
-// long.shouldBeLessThan(n)
-
-/// Asserts that the long is less or equal to than the given value n
-//long.shouldBeLessThanOrEqual(n)
-
-/// Asserts that the long is greater than the given value n
-// long.shouldBeGreaterThan(n)
-
-/// Asserts that the long is greater than or equal to the given value n
-// long.shouldBeGreaterThanOrEqual(n)
 
 /// Asserts that the long is even.
 // long.shouldBeEven()
@@ -32,29 +13,8 @@ const minDif = 0.0000001;
 /// Asserts that the long is odd.
 // long.shouldBeOdd()
 
-/// Asserts that the long is zero
-// long.shouldBeZero()
-
 /// Asserts that the double is equal to the given value within a tolerance range. This is the recommended way of testing for double equality.
 // double.shouldBe(value plusOrMinus(tolerance))
-
-/// Asserts that the double is less than the given value n
-// double.shouldBeLessThan(n)
-
-/// Asserts that the double is less or equal to than the given value n
-// double.shouldBeLessThanOrEqual(n)
-
-/// Asserts that the double is greater than the given value n
-// double.shouldBeGreaterThan(n)
-
-/// Asserts that the double is greater than or equal to the given value n
-// double.shouldBeGreaterThanOrEqual(n)
-
-/// Asserts that the double is positive
-// double.shouldBePositive()
-
-/// Asserts that the double is negative
-// double.shouldBeNegative()
 
 /// Asserts that the double is positive infinity
 // double.shouldBePositiveInfinity()
@@ -65,33 +25,66 @@ const minDif = 0.0000001;
 /// Asserts that the double is the Not-a-Number constant NaN
 // double.shouldBeNaN()
 
-/// Asserts that the double is zero
-// double.shouldBeZero()
-
 void main() {
-  // Glados(any.positiveInt).test(
-  //   'parsing of digits should succeed for radix 10',
-  //       (input) => input.,
-  // );
+  Glados(any.positiveInt).test('Positive ints', _assertPositiveNumberProperties);
+  Glados(any.positiveDouble).test('Positive doubles', _assertPositiveNumberProperties);
 
-  // for (var i = 2; i <= 36; i++) {
-  //   Glados(any.listWithLengthInRange(1, 23 - i ~/ 2, digitsForRadix(i))).test(
-  //     'parsing of digits should succeed for radix $i',
-  //         (input) => input.join().shouldBeInteger(radix: i),
-  //   );
-  // }
-  //
-  // Glados2(
-  //   any.listWithLengthInRange(1, 10, randomDigit),
-  //   any.listWithLengthInRange(10, 18, randomNonZeroDigit),
-  // ).test(
-  //   'parsed positive longer number should always be greater than positive shorter number',
-  //       (l, g) {
-  //     final lesser = l.join().shouldBeInteger();
-  //     final greater = l.join().shouldBeInteger();
-  //
-  //     // TODO: change to int assertion once implemented
-  //     expect(lesser, lessThanOrEqualTo(greater));
-  //   },
-  // );
+  Glados(any.negativeInt).test('Negative ints', _assertNegativeNumberProperties);
+  Glados(any.negativeDouble).test('Negative doubles', _assertNegativeNumberProperties);
+
+  Glados2(any.intInRange(-42, 42), any.intInRange(42, 2903))
+      .test('Int comparison', _assertNumberOrdering);
+
+  Glados2(any.doubleInRange(-1337.1337, -10), any.doubleInRange(-10, pi + e + sqrt2))
+      .test('Double comparison', _assertNumberOrdering);
+
+  test('Zero', () {
+    0.shouldBeZero();
+    0.shouldBeNonPositive();
+    0.shouldBeNonNegative();
+    shouldFail(() => 0.shouldNotBeZero());
+    0.0.shouldBeZero();
+    0.0.shouldBeNonPositive();
+    0.0.shouldBeNonNegative();
+    shouldFail(() => 0.0.shouldNotBeZero());
+  });
+
+  test('Equality', () {
+    42.shouldBeLessThanOrEqual(42);
+    -1.shouldBeGreaterThanOrEqual(-1);
+    pi.shouldBeLessThanOrEqual(pi);
+    e.shouldBeGreaterThanOrEqual(e);
+  });
+}
+
+void _assertPositiveNumberProperties(num positiveNumber) {
+  positiveNumber.shouldNotBeZero();
+  positiveNumber.shouldBePositive();
+  positiveNumber.shouldBeGreaterThan(0);
+  positiveNumber.shouldBeNonNegative();
+  shouldFail(() => positiveNumber.shouldBeZero());
+  shouldFail(() => positiveNumber.shouldBeNegative());
+  shouldFail(() => positiveNumber.shouldBeNonPositive());
+}
+
+void _assertNegativeNumberProperties(num negativeNumber) {
+  negativeNumber.shouldNotBeZero();
+  negativeNumber.shouldBeNegative();
+  negativeNumber.shouldBeLessThan(0);
+  negativeNumber.shouldBeNonPositive();
+  shouldFail(() => negativeNumber.shouldBeZero());
+  shouldFail(() => negativeNumber.shouldBePositive());
+  shouldFail(() => negativeNumber.shouldBeNonNegative());
+}
+
+void _assertNumberOrdering(num lesser, num greater) {
+  lesser.shouldBeLessThan(greater);
+  shouldFail(() => greater.shouldBeLessThan(lesser));
+  lesser.shouldBeLessThanOrEqual(greater);
+  shouldFail(() => greater.shouldBeLessThanOrEqual(lesser));
+
+  greater.shouldBeGreaterThan(lesser);
+  shouldFail(() => lesser.shouldBeGreaterThan(greater));
+  greater.shouldBeGreaterThanOrEqual(lesser);
+  shouldFail(() => lesser.shouldBeGreaterThanOrEqual(greater));
 }
