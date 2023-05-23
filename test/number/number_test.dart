@@ -4,27 +4,6 @@ import 'package:dassert/src/internal/should_fail.dart';
 import 'package:dassert/src/public/number/number.dart';
 import 'package:glados/glados.dart';
 
-final int64MaxValue = double.maxFinite.toInt();
-const minDif = 0.0000001;
-
-/// Asserts that the long is even.
-// long.shouldBeEven()
-
-/// Asserts that the long is odd.
-// long.shouldBeOdd()
-
-/// Asserts that the double is equal to the given value within a tolerance range. This is the recommended way of testing for double equality.
-// double.shouldBe(value plusOrMinus(tolerance))
-
-/// Asserts that the double is positive infinity
-// double.shouldBePositiveInfinity()
-
-/// Asserts that the double is negative infinity
-// double.shouldBeNegativeInfinity()
-
-/// Asserts that the double is the Not-a-Number constant NaN
-// double.shouldBeNaN()
-
 void main() {
   Glados(any.positiveInt).test('Positive ints', _assertPositiveNumberProperties);
   Glados(any.positiveDouble).test('Positive doubles', _assertPositiveNumberProperties);
