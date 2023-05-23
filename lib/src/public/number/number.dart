@@ -1,8 +1,8 @@
 import 'package:dassert/src/public/should.dart';
 import 'package:test/expect.dart';
 
-/// TODO
-extension IntMatchers on num {
+/// Wrapper extension class for [num].
+extension NumMatchers on num {
   /// Asserts that the number is between x and y, inclusive on both x and y
   num shouldBeBetween(num x, num y) {
     final upperBound = y >= x ? y : x;

@@ -22,10 +22,6 @@ class _TestSpec extends BaseTestSpec {
 final int64MaxValue = double.maxFinite.toInt();
 const minDif = 0.0000001;
 
-// TODO
-/// Asserts that the long is included in the given range.
-// long.shouldBeInRange(range)
-
 void main() {
   runSpecs(
     'should be between',

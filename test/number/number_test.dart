@@ -26,9 +26,6 @@ const minDif = 0.0000001;
 /// Asserts that the long is greater than or equal to the given value n
 // long.shouldBeGreaterThanOrEqual(n)
 
-/// Asserts that the long is included in the given range.
-// long.shouldBeInRange(range)
-
 /// Asserts that the long is even.
 // long.shouldBeEven()
 
