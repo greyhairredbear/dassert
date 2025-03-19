@@ -14,11 +14,9 @@ linter:
    await_only_futures: true
    comment_references: true
    discarded_futures: true
-   #- dangling_library_doc_comments: true # Todo: use once stable
-   package_api_docs: true
+   dangling_library_doc_comments: true
    prefer_single_quotes: true
    public_member_api_docs: true
    sort_child_properties_last: true
    type_annotate_public_apis: true
    unawaited_futures: true
-   unsafe_html: true
