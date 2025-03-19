@@ -8,7 +8,8 @@ extension IterableMatchers<C extends Iterable<E?>, E> on C {
       should(predicate((C p0) => !p0.contains(null), 'contains no elements that are null'));
 
   /// Asserts that the collection contains at least one null element.
-// collection.shouldContainNull()
+  C shouldContainNull() =>
+      should(predicate((C p0) => p0.contains(null), 'contains at least one null element'));
 
   /// Asserts that the collection contains only null elements, or is empty.
 // collection.shouldContainOnlyNulls()
