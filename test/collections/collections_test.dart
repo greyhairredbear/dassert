@@ -24,15 +24,6 @@ void main() {
     testFunction: (_TestSpec<dynamic> spec) => spec.input.shouldContainNoNulls(),
   );
 
-  runSpecs(
-    'test failure',
-    successSpecs: [
-      _TestSpec(name: 'passing test', input: ['']),
-      _TestSpec(name: 'failing test', input: [null]),
-    ],
-    failSpecs: <_TestSpec<dynamic>>[],
-    testFunction: (_TestSpec<dynamic> spec) => spec.input.shouldContainNoNulls(),
-  );
   // TODO: fix usages of predicate function (provide string explanations for predicate)
 
   // TODO: other tests
