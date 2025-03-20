@@ -5,12 +5,13 @@ import 'package:test/expect.dart';
 extension IterableMatchers<C extends Iterable<E?>, E> on C {
   /// Asserts that the collection contains no null elements, or is empty.
   C shouldContainNoNulls() =>
-      should(predicate((C p0) => !p0.contains(null), 'contains no elements that are null'));
+      should(predicate((C p0) => !p0.contains(null), 'contains no null elements, or is empty'));
 
   /// Asserts that the collection contains at least one null element.
   C shouldContainNull() =>
       should(predicate((C p0) => p0.contains(null), 'contains at least one null element'));
 
   /// Asserts that the collection contains only null elements, or is empty.
-// collection.shouldContainOnlyNulls()
+  C shouldContainOnlyNulls() => should(
+      predicate((C p0) => p0.every((e) => e == null), 'contains only null elements, or is empty'));
 }
