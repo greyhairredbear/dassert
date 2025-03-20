@@ -6,3 +6,7 @@ check:
 
 format:
 	dart format --output=none --line-length=100 .
+
+coverage:
+	dart pub global activate coverage
+	dart pub global run coverage:test_with_coverage
