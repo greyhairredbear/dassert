@@ -69,7 +69,47 @@ void main() {
     testFunction: (_TestSpec<dynamic> spec) => spec.input.shouldContainOnlyNulls(),
   );
 
-  // TODO: fix usages of predicate function (provide string explanations for predicate)
+  runSpecs(
+    'shouldBeEmpty',
+    successSpecs: [emptySpec],
+    failSpecs: [
+      listWithSingleNull,
+      listWithOnlyNull,
+      listWithNumbersAndSingleNull,
+      listWithNumbersAndMultipleNull,
+      listOfNumbersWithoutNull,
+    ],
+    testFunction: (_TestSpec<dynamic> spec) => spec.input.shouldBeEmpty(),
+  );
 
-  // TODO: other tests
+  runSpecs(
+    'shouldNotBeEmpty',
+    successSpecs: [
+      listWithSingleNull,
+      listWithOnlyNull,
+      listWithNumbersAndSingleNull,
+      listWithNumbersAndMultipleNull,
+      listOfNumbersWithoutNull,
+    ],
+    failSpecs: [emptySpec],
+    testFunction: (_TestSpec<dynamic> spec) => spec.input.shouldNotBeEmpty(),
+  );
+
+  runSpecs(
+    'shouldBeUnique',
+    // TODO also use data class for this
+    successSpecs: [
+      emptySpec,
+      listWithSingleNull,
+      listWithNumbersAndSingleNull,
+      listOfNumbersWithoutNull,
+    ],
+    failSpecs: [
+      listWithOnlyNull,
+      listWithNumbersAndMultipleNull,
+    ],
+    testFunction: (_TestSpec<dynamic> spec) => spec.input.shouldBeUnique(),
+  );
+
+  // TODO: fix usages of predicate function (provide string explanations for predicate)
 }
