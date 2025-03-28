@@ -1,7 +1,7 @@
 import 'package:dassert/src/public/should.dart';
 import 'package:test/expect.dart';
 
-/// Wrapper extension class for [num].
+/// Utils for asserting [num] values.
 extension NumMatchers on num {
   /// Asserts that the number is less than the given value [n]
   num shouldBeLessThan(num n) => should(lessThan(n));

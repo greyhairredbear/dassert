@@ -1,6 +1,5 @@
 import 'package:characters/characters.dart';
 import 'package:dassert/dassert.dart';
-import 'package:dassert/src/public/number/number.dart';
 import 'package:glados/glados.dart';
 
 import '../util/run_spec.dart';

@@ -3,7 +3,7 @@ import 'package:dassert/dassert.dart';
 import 'package:test/test.dart';
 
 /// Utils for asserting string values
-extension StringMatcher on String {
+extension StringMatchers on String {
   /// Asserts that the string contains only whitespace, or is empty.
   String shouldBeBlank() => trim().should(isEmpty);
 
@@ -16,10 +16,12 @@ extension StringMatcher on String {
   /// Asserts that the string is all in upper case.
   String shouldBeUpperCase() => shouldBe(toUpperCase());
 
-  /// Asserts that the string is truthy. Truthy is one of the followings: ["true", "yes", "y", "1"]
+  /// Asserts that the string is truthy.
+  /// Truthy is one of the followings: \["true", "yes", "y", "1"\]
   String shouldBeTruthy() => should(predicate((String s) => ['true', 'yes', 'y', '1'].contains(s)));
 
-  /// Asserts that the string is falsy. Falsy is one of the followings: ["false", "no", "n", "0"]
+  /// Asserts that the string is falsy.
+  /// Falsy is one of the followings: \["false", "no", "n", "0"\]
   String shouldBeFalsy() => should(predicate((String s) => ['false', 'no', 'n', '0'].contains(s)));
 
   /// Asserts that the string is equal to [other] ignoring case.

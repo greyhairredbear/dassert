@@ -1,8 +1,9 @@
 import 'package:dassert/dassert.dart';
 import 'package:test/expect.dart';
 
-/// Wrapper extension class for [double].
-extension NumMatchers on double {
+/// Utils for asserting [double] values
+/// in ways which cannot be covered by [NumMatchers].
+extension DoubleMatchers on double {
   /// Asserts that the double is equal to the given [value] within a [tolerance] range. This is the recommended way of testing for double equality.
   double shouldBeWithTolerance(double value, double tolerance) => should(closeTo(value, tolerance));
 

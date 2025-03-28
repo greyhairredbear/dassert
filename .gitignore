@@ -110,3 +110,5 @@ fabric.properties
 !.idea/runConfigurations
 !.idea/runConfigurations/*
 *.iml
+
+.DS_Store

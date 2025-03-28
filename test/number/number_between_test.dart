@@ -44,7 +44,7 @@ void main() {
   );
 
   Glados(any.positiveIntOrZero).test(
-    'positive ints should be between 0 and maxint',
+    'positive ints should be between 0 and max int',
     (input) {
       input.shouldBeBetween(0, int64MaxValue);
       shouldFail(() => input.shouldBeBetween(-int64MaxValue, -1));
